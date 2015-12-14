@@ -6,7 +6,11 @@ import Lex
 import Rules
 
 data ParseTree = Leaf String | Cmplx :^ [ParseTree] 
-             deriving (Eq, Ord, Show)
+             deriving (Eq, Ord)
+
+instance Show ParseTree where
+    show (Leaf a)     = show a
+    show (c :^ trees) = show c ++ "^" ++ show trees
 
 type Cell   = Map.Map Cmplx [ParseTree]
 type Vector = [(Int, Cell)]
